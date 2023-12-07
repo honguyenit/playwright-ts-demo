@@ -82,3 +82,19 @@ test('Extracting text', async ({page}) => {
     await expect(passwordPlaceholderText).toEqual('Password')
 
 })
+
+test('Assertion test', async ({page}) => {
+    const basicFormButton = page.locator('nb-card').filter({hasText: "Basic form"}).locator('button')
+
+    // General assertion
+    const value = 5
+    expect(value).toEqual(5)
+
+    const buttonText = await basicFormButton.textContent()
+    expect(buttonText).toEqual('Submit')
+
+    // Locator assertion
+    expect.soft(basicFormButton).toHaveText('Submit1')
+    expect(basicFormButton).toHaveText('Submit')
+    await basicFormButton.click()
+})

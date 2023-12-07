@@ -10,6 +10,9 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  // globalTimeout: 30 * 1000,// global timeout
+  // timeout: 20*1000, // test timout
+  // expect: {timeout: 10 * 1000},
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -23,6 +26,9 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    // actionTimeout: 10 * 1000, // action timeout
+    // navigationTimeout: 20 * 1000, // navigation timeout
+    
     headless: false,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
