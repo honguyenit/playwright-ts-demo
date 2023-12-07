@@ -13,7 +13,7 @@ export default defineConfig({
   // globalTimeout: 30 * 1000,// global timeout
   // timeout: 20*1000, // test timout
   // expect: {timeout: 10 * 1000},
-  testDir: './tests',
+  // testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
