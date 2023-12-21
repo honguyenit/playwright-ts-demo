@@ -28,5 +28,4 @@ test('FormLayout test', async ({page})=>{
     await navPage.openDatePickerMenu()
     await datePickerPage.selectDatePickerFromToday(10)
     await datePickerPage.selectDatePickerWithRangeFromToday(5, 15)
-
  })

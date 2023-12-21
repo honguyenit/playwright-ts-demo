@@ -1,7 +1,7 @@
 import { Locator, Page, expect } from "@playwright/test"
+import { Helpers } from "./Helpers"
 
-export class DatePickerPage{
-    private readonly page: Page
+export class DatePickerPage extends Helpers{
     private readonly formPicker: Locator
     private readonly rangePicker: Locator
     private readonly calendarMonthAnYear: Locator
@@ -10,7 +10,7 @@ export class DatePickerPage{
 
 
     constructor(page: Page){
-        this.page = page
+        super(page)
         this.formPicker = this.page.getByPlaceholder('Form Picker')
         this.rangePicker = this.page.getByPlaceholder('Range Picker')
         this.calendarMonthAnYear = this.page.locator('nb-calendar-view-mode')
@@ -21,6 +21,7 @@ export class DatePickerPage{
     async selectDatePickerFromToday(numberOfDayFromToday: number){
         const canlendarInputField = this.formPicker
         await canlendarInputField.click()
+        await this.waitForNumberOfSeconds(1)
         const expectedDate = await this.selectDateInTheCalendar(numberOfDayFromToday)
         await expect(canlendarInputField).toHaveValue(expectedDate)
     }

@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test"
+import { Helpers } from "./Helpers"
 
-export class FormLayoutPage{
-    private readonly page: Page
+export class FormLayoutPage extends Helpers{
     private readonly usingGridForm: Locator
     private readonly gridFormEmail: Locator
     private readonly gridFormPassword: Locator
@@ -13,9 +13,8 @@ export class FormLayoutPage{
     private readonly inlineFormCheckbox: Locator
     private readonly inlineFormSubmitButton: Locator
 
-
     constructor(page: Page){
-        this.page = page
+        super(page)
 
         this.usingGridForm = this.page.locator('nb-card', {hasText: 'Using the Grid'})
         this.gridFormEmail = this.usingGridForm.getByRole('textbox', {name: 'Email'})
@@ -35,6 +34,7 @@ export class FormLayoutPage{
         await this.gridFormPassword.fill(password)
         await this.usingGridForm.getByRole('radio', {name: optionText}).check({force:true})
         await this.gridFormSubmitButton.click()
+        await this.waitForNumberOfSeconds(1)
     }
 
     async submitInlineFormWithCredentialsAndCheckbox(name: string, email: string, rememberMe: boolean){
@@ -44,6 +44,7 @@ export class FormLayoutPage{
             await this.inlineFormCheckbox.check({force:true})
         }
         await this.inlineFormSubmitButton.click()
+        await this.waitForNumberOfSeconds(1)
     }
 
 }
